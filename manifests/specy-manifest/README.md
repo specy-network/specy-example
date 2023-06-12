@@ -68,7 +68,7 @@ query by task hash
   }
   ```
 also can query by id
-  ```
+  ```graphql
    query{
     tasks(where:{id:"66d266f553ff18e075ad06bd6e5a905831181e9328fd4e8474cf013563b6ed4b"}){
       hash

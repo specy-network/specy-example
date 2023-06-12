@@ -42,23 +42,7 @@ The query result
 }
 ```
 
-query by task hash
-
-```graphql
- query{
-    tasks(where:{hash:"66d266f553ff18e075ad06bd6e5a905831181e9328fd4e8474cf013563b6ed4b"}){
-      hash
-      id
-      rule_file
-      creator
-      single
-      calldata
-      contract_address
-      method
-    }
-  }
-  ```
-also can query by id
+query by task id
   ```graphql
    query{
     rewardlists(where:{id:"reward_list"}){
