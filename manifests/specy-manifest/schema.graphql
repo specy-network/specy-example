@@ -15,7 +15,7 @@ type task @entity{
   calldata:String!
   
   " single call"
-  single:Bool!
+  single:Boolean!
 
   " rule file content "
   rule_file: String

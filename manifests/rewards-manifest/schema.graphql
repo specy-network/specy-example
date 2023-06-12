@@ -2,6 +2,6 @@ type rewardlist @entity{
   " tash hash"
   id: ID!
 
-  list:[String]!
+  list:[String!]
 }
 

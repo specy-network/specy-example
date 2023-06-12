@@ -5,7 +5,7 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: cosmos
-    name: ibc-2
+    name: specy
     network: localnet
     source:
       startBlock: 0

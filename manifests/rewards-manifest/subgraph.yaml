@@ -5,7 +5,7 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: cosmos
-    name: ibc-2
+    name: specy
     network: localnet
     source:
       startBlock: 0
@@ -13,12 +13,8 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - Receive
-        - List
+        - rewardlist
       eventHandlers:
-        - event: reward_list_proposal
-          handler: handleListProposal
-        
-      transactionHandlers:
-        - handler: handleTx
+        - event: set_reward_list
+          handler: handleSetRewardList
       file: ./src/mapping.ts
