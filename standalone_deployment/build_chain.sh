@@ -45,6 +45,12 @@ parse_params()
         ;;
         set_reward_list) set_reward_list
         ;;
+        create_executor) create_executor
+        ;;
+        execute_task) execute_task
+        ;;
+        claim) claim
+        ;;
         help) help
         ;;
     esac
@@ -294,7 +300,7 @@ create_executor(){
 create_task(){
     $CHAIN_BINARY tx specy create-task \
         rewards SetRewards \
-        "{\"params\":[\"1686553200\",\"a7dc6c23c3d0e2f14587f2096071858c0d52957d8a2117e5dd4ada522fa742cf\"],\"index\":1}" \
+        "{\"params\":[\"1686639600\",\"4c8e1ad50bb43e1ce411d41b03fe238c09e7391d4613d80ff553cd5cb8a32c74\"],\"index\":1}" \
         true "fsadfsafdsafdsafsaf" \
         --chain-id $CHAIN_ID \
         --from $($CHAIN_BINARY --home $CHAIN_HOME keys show validator --keyring-backend test -a) \
@@ -315,15 +321,26 @@ set_reward_list(){
 
 execute_task(){
     $CHAIN_BINARY tx specy execute-task \
-66d266f553ff18e075ad06bd6e5a905831181e9328fd4e8474cf013563b6ed4b \
-"{\"params\":[\"1686553200\",\"a7dc6c23c3d0e2f14587f2096071858c0d52957d8a2117e5dd4ada522fa742cf\"],\"index\":1}" \
---from $($CHAIN_BINARY --home $CHAIN_HOME keys show validator --keyring-backend test -a) \
+    d6a559f42a11bd94d1661a95050b40cc7cdb9ef017c732f0d6fd6398a321d37a \
+    "{\"params\":[\"1686639600\",\"4c8e1ad50bb43e1ce411d41b03fe238c09e7391d4613d80ff553cd5cb8a32c74\"],\"index\":1}" \
+    sdsada dadsadasd \
+    --from $($CHAIN_BINARY --home $CHAIN_HOME keys show validator --keyring-backend test -a) \
         --keyring-backend test \
         --gas auto \
         --chain-id $CHAIN_ID \
         --home $CHAIN_HOME \
         --yes
+}
 
+claim(){
+    $CHAIN_BINARY tx rewards claim \
+        231f5d79378ad5a556cae677e5e6d03ea176e2b5ed2ac0c60ea38960084c6262,00c01195d529a82cf72baf0d0c6ade87e982ec52e91c9ae71a671f583fabab6a \
+        --from $($CHAIN_BINARY --home $CHAIN_HOME keys show validator --keyring-backend test -a) \
+        --keyring-backend test \
+        --gas auto \
+        --chain-id $CHAIN_ID \
+        --home $CHAIN_HOME \
+        --yes
 }
 
 dir_must_exists() {
