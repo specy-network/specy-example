@@ -8,11 +8,11 @@
     "prepare:osmosis": "mustache config/osmosis.json subgraph.template.yaml > subgraph.yaml",
     "codegen": "graph codegen",
     "build": "graph build",
-    "create-local": "graph create ics721-subgraph --node http://localhost:8020",
-    "deploy-local": "graph deploy ics721-subgraph -l v0.1.0 --ipfs http://localhost:5001 --node http://localhost:8020",
-    "remove-local": "graph remove ics721-subgraph --node http://localhost:8020",
-    "create": "graph create ics721-subgraph --node https://api.thegraph.com/deploy/",
-    "deploy": "graph deploy ics721-subgraph --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/"
+    "create-local": "graph create ics721 --node http://localhost:8020",
+    "deploy-local": "graph deploy ics721 -l v0.1.0 --ipfs http://localhost:5001 --node http://localhost:8020",
+    "remove-local": "graph remove ics721  --node http://localhost:8020",
+    "create": "graph create ics721  --node https://api.thegraph.com/deploy/",
+    "deploy": "graph deploy ics721  --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.30.0",

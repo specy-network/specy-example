@@ -89,7 +89,7 @@ create_executor(){
 create_task(){
     $CHAIN_BINARY tx specy create-task \
     rewards SetRewards \
-    "{\"params\":[\"dasdasdasdasdasdasda\",\"merkelrootdsdadsadadsada\"],\"index\":1}" \
+    "{\"params\":[\"1686639600\",\"329d9b874ed90126d153f13cb6222f5a35c12232343f81066429d0af58c2f3da\"],\"index\":1}" \
     true "fsadfsafdsafdsafsaf" \
     --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
         --keyring-backend test \
@@ -100,8 +100,8 @@ create_task(){
 
 execute_task(){
     $CHAIN_BINARY tx specy execute-task \
-    69550634d2cdaf9a41a6df589ccfa61a6b427ae542d52cce3e3e93c0cdfaada9 \
-    "{\"params\":[\"1686553200\",\"e8956b818312eed010a71d2d2e8de753707f2ae4797752112e0eb740fd9708cf\"],\"index\":1}" \
+    4577b830d5fff31d1abac8fd9a0d60168e6bcfb9aacf0efea1c4911878390f45 \
+    "{\"params\":[\"1686639600\",\"329d9b874ed90126d153f13cb6222f5a35c12232343f81066429d0af58c2f3da\"],\"index\":1}" \
     "signaturessss" \
     "fafdfafdsafs" \
     --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
@@ -122,7 +122,7 @@ set_reward_list(){
 
 claim(){
     $CHAIN_BINARY tx rewards claim \
-        d29d04819913abf401dce251b05a64903c173d37c14f74ba0f951a471784c30d,3098f91f5466dacf3c91f0dc9c5f9dda49ac08dd81b70861c8192a5cb7d4cb9b \
+        36738d5a9677d0083dce95bc9135c1de689a0858f685ce1b6d8dd60d446c5b84,d0bd392e0dcd8b2ee147a774f12d2766b1811762dd772d322aa007f993204e2b \
         --chain-id $CHAIN_ID \
         --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
         --keyring-backend test \
