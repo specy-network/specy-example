@@ -16,7 +16,7 @@ cd $RELAYER_DIR
 rm -rf $RELAYER_CONF &> /dev/null
 pwd
 # spin up two ibc enabled chains and add relevant config info for relaying
-bash scripts/two-chainz "skip"
+bash "scripts/two-chainz.sh" "skip"
 
 echo "waiting for blocks..."
 sleep 3

@@ -46,8 +46,8 @@ chainid1=ibc-1
 
 echo "Generating gaia configurations..."
 mkdir -p $CHAIN_DATA && cd $CHAIN_DATA && cd ../
-./scripts/one-chain iris $chainid0 ./data 26657 26656 6060 9090 iris uiris 8545 8546
-./scripts/one-chain iris $chainid1 ./data 26557 26556 6061 9091 iris uiris 8535 8536
+bash "./scripts/one-chain.sh" iris $chainid0 ./data 26657 26656 6060 9090 iris uiris 8545 8546
+bash "./scripts/one-chain.sh" iris $chainid1 ./data 26557 26556 6061 9091 iris uiris 8535 8536
 
 [ -f $CHAIN_DATA/$chainid0.log ] && echo "$chainid0 initialized. Watch file $CHAIN_DATA/$chainid0.log to see its execution."
 [ -f $CHAIN_DATA/$chainid1.log ] && echo "$chainid1 initialized. Watch file $CHAIN_DATA/$chainid1.log to see its execution."

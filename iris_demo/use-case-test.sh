@@ -24,63 +24,6 @@ EOF
 exit 0
 }
 
-issue_nft_denom()
-{
-    iris tx nft issue class222  --name=class222 --from=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a) \
-     --mint-restricted=false --update-restricted=false --chain-id=ibc-1 \
-     --keyring-backend=test --home=./data/ibc-1 \
-     --node=tcp://localhost:26557
-}
-
-mint_nft_token()
-{
-    iris tx nft mint class222 token222 --recipient=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a)  \
-    --from=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a)  --chain-id=ibc-1 --keyring-backend=test \
-    --home=./data/ibc-1 --node=tcp://0.0.0.0:26557
-}
-
-ibc_nft_transfer()
-{
-    iris tx nft-transfer transfer nft-transfer channel-0 $($CHAIN_BINARY  --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
-    class222 token222 --from=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a)  --chain-id=ibc-1 \
-    --keyring-backend=test --home=./data/ibc-1 --node=tcp://0.0.0.0:26557
-}
-
-create_executor(){
-    iris tx specy create-executor 10000uiris "iasreport info" "enclave pk info" \
-    --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
-        --keyring-backend test \
-        --gas auto \
-        --chain-id $CHAIN_ID \
-        --home ./data/ibc-2 
-
-}
-
-create_task(){
-    iris tx specy create-task \
-    rewards SetRewards \
-    "{\"params\":[\"dasdasdasdasdasdasda\",\"merkelrootdsdadsadadsada\"],\"index\":1}" \
-    true "fsadfsafdsafdsafsaf" \
-    --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
-        --keyring-backend test \
-        --gas auto \
-        --chain-id $CHAIN_ID \
-        --home ./data/ibc-2 
-}
-
-execute_task(){
-    specyd tx specy execute-task \
-$1 \
-"{\"params\":[\"dasdasdasdasdasdasda\",\"merkelrootdsdadsadadsada\"],\"index\":1}" \
---from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
-        --keyring-backend test \
-        --gas auto \
-        --chain-id $CHAIN_ID \
-        --home ./data/ibc-2 
-}
-
-
-
 parse_params()
 {
     case $1 in 
@@ -104,8 +47,91 @@ parse_params()
         ;;
         execute-task) execute_task
         ;;
+        set-reward-list) set_reward_list
+        ;;
+        claim) claim
+        ;;
     esac
 }
+
+issue_nft_denom()
+{
+    $CHAIN_BINARY tx nft issue class222  --name=class222 --from=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a) \
+     --mint-restricted=false --update-restricted=false --chain-id=ibc-1 \
+     --keyring-backend=test --home=./data/ibc-1 \
+     --node=tcp://localhost:26557
+}
+
+mint_nft_token()
+{
+    $CHAIN_BINARY tx nft mint class222 token222 --recipient=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a)  \
+    --from=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a)  --chain-id=ibc-1 --keyring-backend=test \
+    --home=./data/ibc-1 --node=tcp://0.0.0.0:26557
+}
+
+ibc_nft_transfer()
+{
+    $CHAIN_BINARY tx nft-transfer transfer nft-transfer channel-0 $($CHAIN_BINARY  --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+    class222 token222 --from=$($CHAIN_BINARY  --home ./data/ibc-1 keys show validator --keyring-backend test -a)  --chain-id=ibc-1 \
+    --keyring-backend=test --home=./data/ibc-1 --node=tcp://0.0.0.0:26557
+}
+
+create_executor(){
+    $CHAIN_BINARY tx specy create-executor 10000uiris "iasreport info" "enclave pk info" \
+    --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+        --keyring-backend test \
+        --gas auto \
+        --chain-id $CHAIN_ID \
+        --home ./data/ibc-2 
+
+}
+
+create_task(){
+    $CHAIN_BINARY tx specy create-task \
+    rewards SetRewards \
+    "{\"params\":[\"dasdasdasdasdasdasda\",\"merkelrootdsdadsadadsada\"],\"index\":1}" \
+    true "fsadfsafdsafdsafsaf" \
+    --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+        --keyring-backend test \
+        --gas auto \
+        --chain-id $CHAIN_ID \
+        --home ./data/ibc-2 
+}
+
+execute_task(){
+    $CHAIN_BINARY tx specy execute-task \
+    69550634d2cdaf9a41a6df589ccfa61a6b427ae542d52cce3e3e93c0cdfaada9 \
+    "{\"params\":[\"1686553200\",\"e8956b818312eed010a71d2d2e8de753707f2ae4797752112e0eb740fd9708cf\"],\"index\":1}" \
+    "signaturessss" \
+    "fafdfafdsafs" \
+    --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+        --keyring-backend test \
+        --gas auto \
+        --chain-id $CHAIN_ID \
+        --home ./data/ibc-2 
+}
+set_reward_list(){
+    $CHAIN_BINARY tx rewards set-reward-list \
+        token1,token2 \
+        --chain-id $CHAIN_ID \
+        --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+        --keyring-backend test \
+        --home ./data/ibc-2  \
+        --gas auto 
+}
+
+claim(){
+    $CHAIN_BINARY tx rewards claim \
+        d29d04819913abf401dce251b05a64903c173d37c14f74ba0f951a471784c30d,3098f91f5466dacf3c91f0dc9c5f9dda49ac08dd81b70861c8192a5cb7d4cb9b \
+        --chain-id $CHAIN_ID \
+        --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+        --keyring-backend test \
+        --home ./data/ibc-2  \
+        --gas auto 
+}
+
+
+
 
 
 

@@ -66,13 +66,13 @@ clean(){
         fi
 
         # select graph-node tmux session 
-        if tmux has-session -t regchain-node 2>/dev/null; then
+        if tmux has-session -t chain-node 2>/dev/null; then
             # if exsist ,kill it
-            log $LOG_SUCCESS "kill tmux regchain-node session"
-            tmux kill-session -t regchain-node
+            log $LOG_SUCCESS "kill tmux chain-node session"
+            tmux kill-session -t chain-node
         else
             # if is not exisis 
-            log $LOG_SUCCESS "Tmux session regchain-node does not exist"
+            log $LOG_SUCCESS "Tmux session chain-node does not exist"
         fi
 
         log "start remove chain data."
@@ -98,7 +98,6 @@ clean(){
         cd $deploy_home_dir
         log "start remove logs ."
         rm -rf './logs/firehose.log'
-        rm -rf './logs/regchain.log'
         rm -rf './logs/graphnode.log'
 
         log $LOG_SUCCESS "clean end"
@@ -282,12 +281,13 @@ deploy_system_manifest(){
 
 
 create_executor(){
-    iris tx specy create-executor 10000uiris "iasreport info" "enclave pk info" \
-    --from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+    $CHAIN_BINARY tx specy create-executor 10000stake "iasreport info" "enclave pk info" \
+    --from $($CHAIN_BINARY --home $CHAIN_HOME keys show validator --keyring-backend test -a) \
         --keyring-backend test \
         --gas auto \
         --chain-id $CHAIN_ID \
-        --home ./data/ibc-2 
+        --home $CHAIN_HOME \
+        --yes
 
 }
 
@@ -314,14 +314,15 @@ set_reward_list(){
 }
 
 execute_task(){
-    specyd tx specy execute-task \
-$1 \
-"{\"params\":[\"dasdasdasdasdasdasda\",\"merkelrootdsdadsadadsada\"],\"index\":1}" \
---from $($CHAIN_BINARY --home ./data/ibc-2 keys show validator --keyring-backend test -a) \
+    $CHAIN_BINARY tx specy execute-task \
+66d266f553ff18e075ad06bd6e5a905831181e9328fd4e8474cf013563b6ed4b \
+"{\"params\":[\"1686553200\",\"a7dc6c23c3d0e2f14587f2096071858c0d52957d8a2117e5dd4ada522fa742cf\"],\"index\":1}" \
+--from $($CHAIN_BINARY --home $CHAIN_HOME keys show validator --keyring-backend test -a) \
         --keyring-backend test \
         --gas auto \
         --chain-id $CHAIN_ID \
-        --home ./data/ibc-2 
+        --home $CHAIN_HOME \
+        --yes
 
 }
 
