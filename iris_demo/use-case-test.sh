@@ -223,13 +223,23 @@ deploy_graph_node(){
 
     log "Start deploy manifest"
 
-    deploy_system_manifest
-
     
 }
 deploy_system_manifest(){
     log "deploy system graph node manifest"
+    cd "../manifests/rewards-manifest"
+    yarn 
+    yarn codegen && yarn build
+    yarn create-local && yarn deploy-local
+    cd $deploy_home_dir
+
     cd "../manifests/ics721-manifest"
+    yarn 
+    yarn codegen && yarn build
+    yarn create-local && yarn deploy-local
+    cd $deploy_home_dir
+
+    cd "../manifests/specy-manifest"
     yarn 
     yarn codegen && yarn build
     yarn create-local && yarn deploy-local
