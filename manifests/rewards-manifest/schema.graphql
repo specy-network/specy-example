@@ -5,3 +5,8 @@ type rewardlist @entity{
   list:[String!]
 }
 
+type merkellist @entity{
+  id:ID!
+ timestamp: BigInt!
+  root:String!
+}
