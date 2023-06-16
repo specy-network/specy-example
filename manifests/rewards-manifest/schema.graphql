@@ -10,3 +10,10 @@ type merkellist @entity{
  timestamp: BigInt!
   root:String!
 }
+
+type claimlist @entity{
+  id:ID!
+  address:String!
+  timestamp:BigInt!
+  status:String!
+}
