@@ -17,6 +17,6 @@ dataSources:
       eventHandlers:
         - event: set_reward_list
           handler: handleSetRewardList
-        - event: set_merkel_list
+        - event: set_merkel_root
           handler: handleSetMerkelList
       file: ./src/mapping.ts

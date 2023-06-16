@@ -15,6 +15,7 @@ export function handleSetMerkelList(data: cosmos.EventData): void {
 
   let list = new merkellist(data.block.header.height.toString())
   list.root = data.event.getAttributeValue("merkel_root");
+  list.timestamp = bigInt.fromString(data.block.header.time.seconds.toString())
   log.info("handle merker list successed ,list:{}", [data.event.getAttributeValue("merkel_root")])
   list.save()
 }
